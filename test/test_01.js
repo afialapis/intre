@@ -28,10 +28,10 @@ import {
 } from '../src/index'
 
 
-import { RED, GREEN, BLUE, LIGHT_BLUE } from 'farrapa-colors'
+import { red, green, blue, blue_light } from 'farrapa-colors'
 
 function check(e,n) {
-  console.log(`${BLUE(n)} is ${LIGHT_BLUE(epoch_to_str(e, 'DD MMM YYYY HH:mm:ss'))}`)
+  console.log(`${blue(n)} is ${blue_light(epoch_to_str(e, 'DD MMM YYYY HH:mm:ss'))}`)
 }
 
 
@@ -54,7 +54,7 @@ check(epoch_noon(may04), 'Day Of: May 04')
 check(epoch_noon(may04noon), 'Day Of: May 04 - noon')
 
 const may04_same= epoch_are_same_day(may04, may04noon)
-console.log(`May 04 / May 04 - noon => are the same day? ${may04_same ? GREEN('yes') : RED('no!')}`)
+console.log(`May 04 / May 04 - noon => are the same day? ${may04_same ? green('yes') : red('no!')}`)
 
 const jun18= epoch_from_str('18/06/2020', 'DD/MM/YYYY')
 const jun18night= epoch_from_str('18/06/2020 23:00:00', 'DD/MM/YYYY HH:mm:ss')
@@ -66,7 +66,7 @@ check(epoch_noon(jun18), 'Day Of: Jun 18')
 check(epoch_noon(jun18night), 'Day Of: Jun 18 - night')
 
 const jun18_same= epoch_are_same_day(jun18, jun18night)
-console.log(`Jun 18 / Jun 18 - night => are the same day? ${jun18_same ? GREEN('yes') : RED('no!')}`)
+console.log(`Jun 18 / Jun 18 - night => are the same day? ${jun18_same ? green('yes') : red('no!')}`)
 
 const diffa= epoch_diff(may04, jun18)
 const diffb= epoch_diff(may04, jun18night)
