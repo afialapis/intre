@@ -145,7 +145,7 @@ export function epoch_pretty_long(e) {
 }
 
 export function epoch_pretty_short_with_time(e) {
-  return epoch_to_str(e, 'D MMM [a las] hh:mm')
+  return epoch_to_str(e, 'D MMM [a las] HH:mm')
 }
 
 export function epoch_pretty_short_with_from_now(e) {
