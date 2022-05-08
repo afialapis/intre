@@ -17,6 +17,7 @@ import {
   epoch_are_same_day,
   epoch_diff,
   epoch_add_days,
+  epoch_add_business_days,
   epoch_add_months,
   epoch_add_years,
   epoch_sub_months,
@@ -41,13 +42,13 @@ const today= epoch_noon()
 check(now, 'now')
 check(today, 'today')
 
-const may04= epoch_from_str('04/05/2020', 'DD/MM/YYYY')
-const may04noon= epoch_from_str('04/05/2020 15:00:00', 'DD/MM/YYYY HH:mm:ss')
+const may04= epoch_from_str('04/05/2022', 'DD/MM/YYYY')
+const may04noon= epoch_from_str('04/05/2022 15:00:00', 'DD/MM/YYYY HH:mm:ss')
 
 check(may04, 'May 04')
 check(may04noon, 'May 04 - noon')
 
-const may04d= epoch_from_date(new Date(2020, 4, 4))
+const may04d= epoch_from_date(new Date(2022, 4, 4))
 check(may04d, 'May 04 - from date')
 
 check(epoch_noon(may04), 'Day Of: May 04')
@@ -56,8 +57,8 @@ check(epoch_noon(may04noon), 'Day Of: May 04 - noon')
 const may04_same= epoch_are_same_day(may04, may04noon)
 console.log(`May 04 / May 04 - noon => are the same day? ${may04_same ? green('yes') : red('no!')}`)
 
-const jun18= epoch_from_str('18/06/2020', 'DD/MM/YYYY')
-const jun18night= epoch_from_str('18/06/2020 23:00:00', 'DD/MM/YYYY HH:mm:ss')
+const jun18= epoch_from_str('18/06/2022', 'DD/MM/YYYY')
+const jun18night= epoch_from_str('18/06/2022 23:00:00', 'DD/MM/YYYY HH:mm:ss')
 
 check(jun18, 'Jun 18')
 check(jun18night, 'Jun 18 - night')
@@ -74,8 +75,10 @@ const diffb= epoch_diff(may04, jun18night)
 console.log(`From 04 May to 18 Jun => ${diffa}`)
 console.log(`From 04 May to 18 Jun night => ${diffb}`)
 
-check(epoch_add_days(jun18, 1), '1 Day after Jun 18')
-check(epoch_add_days(jun18, 11), '11 Day after Jun 18')
+check(epoch_add_days(jun18, 1), '1 day after Jun 18')
+check(epoch_add_days(jun18, 11), '11 days after Jun 18')
+check(epoch_add_business_days(jun18, 11), '11 working days after Jun 18')
+check(epoch_add_business_days(jun18, 11, true), '11 working days (including saturday) after Jun 18')
 
 check(epoch_add_months(jun18, 1), '1 month after Jun 18')
 check(epoch_add_months(jun18, 11), '11 month after Jun 18')

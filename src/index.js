@@ -81,6 +81,34 @@ export function epoch_add_days(e, n) {
   return _moment(e).add(n, 'days').unix()
 }
 
+
+export function epoch_add_business_days(e, n, includeSaturdays= false) {
+  const exclude_days= [
+    0 // Sunday
+  ]
+  if (includeSaturdays !== true) {
+    exclude_days.push(
+      6 // Saturday
+    )
+  }
+
+  let days_remaining = n
+  const mom= _moment(e)
+
+  while (days_remaining > 0) {
+    mom.add(1, 'days');
+    if (exclude_days.indexOf( mom.day() ) < 0) {
+      days_remaining--;
+    }
+  }
+
+  return mom.unix()
+}
+
+
+
+
+
 export function epoch_add_months(e, n) {
   return _moment(e).add(n, 'months').unix()
 }

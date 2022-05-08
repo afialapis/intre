@@ -72,6 +72,8 @@ Format: _"D de MMMM de YYYY"_
 
 ### `epoch_add_days(e, n)`
 
+### `epoch_add_business_days(e, n, includeSaturdays= false)`
+
 ### `epoch_add_months(e, n)`
 
 ### `epoch_add_years(e, n)`
