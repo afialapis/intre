@@ -1,13 +1,29 @@
-# intre
+![Intre logo](https://intre.afialapis.com/logo.png)
 
-Working with dates in a simple way: using Unix Epoch times.
+[![NPM Version](https://badge.fury.io/js/intre.svg)](https://www.npmjs.com/package/intre)
+[![NPM Downloads](https://img.shields.io/npm/dm/intre.svg?style=flat)](https://www.npmjs.com/package/intre)
 
+Working with dates in a simple way: using [Unix Epoch times](https://en.wikipedia.org/wiki/Unix_time). So: numbers.
+
+# Install
+
+```
+  npm i intre
+```
+
+# Intro
+
+`intre` is a wrap over [moment.js](https://momentjs.com/) providing an API to work with `int`-typed dates.
+
+
+# API
+
+
+## Getters
 
 ### `epoch_now()`
 
 ### `epoch_noon(e)`
-
-
 
 ### `epoch_from_date(d)`
 
@@ -15,8 +31,11 @@ Working with dates in a simple way: using Unix Epoch times.
 
 ### `epoch_from_parts(y, m, d)`
 
+## Converters
 
 ### `epoch_to_str(e, fmt = 'DD/MM/YYYY')`
+
+## Prettiers
 
 ### `epoch_pretty_from_now(e)`
 
@@ -45,6 +64,9 @@ Format: _"D MMM (<from Now>)"_
 Format: _"D de MMMM de YYYY"_
 
 
+## Extract date parts
+
+
 ### `epoch_get_seconds(e)`
 
 ### `epoch_get_minutes(e)`
@@ -61,11 +83,13 @@ Format: _"D de MMMM de YYYY"_
 
 ### `epoch_get_month_name(month, long=false)`
 
+## Checks
 
 ### `epoch_are_same_day(e1, e2)`
 
 ### `epoch_diff(e1, e2, w= 'seconds')`
 
+##  Add and subtract
 
 ### `epoch_add_days(e, n)`
 
@@ -77,6 +101,7 @@ Format: _"D de MMMM de YYYY"_
 
 ### `epoch_sub_months(e, n)`
 
+## Search close dates
 
 ### `epoch_first_of_month(e)`
 
@@ -86,6 +111,7 @@ Format: _"D de MMMM de YYYY"_
 
 ### `epoch_last_of_week(e)`
 
+## Ranges
 
 ### `epoch_range(efrom, eto, includeTo= true)`
 
