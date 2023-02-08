@@ -45,9 +45,6 @@ Format: _"D MMM (<from Now>)"_
 Format: _"D de MMMM de YYYY"_
 
 
-
-
-
 ### `epoch_get_seconds(e)`
 
 ### `epoch_get_minutes(e)`
