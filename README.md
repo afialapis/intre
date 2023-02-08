@@ -116,5 +116,3 @@ Format: _"D de MMMM de YYYY"_
 ### `epoch_range(efrom, eto, includeTo= true)`
 
 
-
-
