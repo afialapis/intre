@@ -37,6 +37,4 @@ npm-debug.log*
 package-lock.json
 .vscode
 TODO.lst
-src.class
-.old
-test/bundle.js
+arredemo

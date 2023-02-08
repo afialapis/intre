@@ -1,6 +1,6 @@
 {
   "name": "intre",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "simple dates with UNIX Epoch Times",
   "author": "Donato Lorenzo <donato@afialapis.com>",
   "contributors": [
@@ -19,45 +19,49 @@
     "lib",
     "dist"
   ],
-  "main": "lib/index.js",
-  "cjs": "dist/intre.cjs.js",
-  "browser": "dist/intre.umd.js",
-  "module": "dist/intre.es.js",
+  "type": "module",
+  "main": "./lib/index.cjs",
+  "cjs": "./dist/intre.cjs",
+  "browser": "./dist/intre.umd.js",
+  "module": "./dist/intre.mjs",
+  "exports": {
+    "import": "./dist/intre.mjs",
+    "default": "./lib/index.cjs",
+    "require": "./dist/intre.cjs"
+  },
   "scripts": {
-    "lint": "eslint src",
-    "test": "node test/index.js",
     "clean-lib": "rm -rf lib && mkdir lib",
     "clean-dist": "rm -rf dist && mkdir dist",
-    "lib": "npm run clean-lib && babel src -d lib",
-    "dist": "npm run clean-dist && rollup -c",
-    "prepare": "npm run lint && npm run test && npm run lib && npm run dist",
-    "clean": "npm run clean-lib && npm run clean-dist && rm -fr node_modules && rm -fr package-lock.json",
-    "reset": "npm run clean && npm i"
+    "clean-site": "rm -rf arredemo",
+    "clean-all": "npm run --silent clean-lib && npm run --silent clean-dist && npm run --silent clean-site",
+    "lint": "npx xeira lint",
+    "test": "npx xeira test ./test/before.mjs ./test/units/*.cjs",
+    "lib": "npm run --silent clean-lib && npx xeira transpile",
+    "dist": "npm run --silent clean-dist && npx xeira bundle",
+    "site": "npm run --silent clean-site && npx xeira site",
+    "prepare": "npm run --silent clean-all && npm run --silent lint && npm run --silent test && npm run --silent lib && npm run --silent dist && npm run --silent site",
+    "reset": "npm run --silent clean-all && rm -fr node_modules && rm -fr package-lock.json && npm i"
   },
   "keywords": [
     "js",
     "util"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.17.0",
-    "@babel/core": "^7.17.2",
-    "@babel/eslint-parser": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/register": "^7.17.0",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-node-resolve": "^13.1.3",
-    "eslint": "^8.9.0",
     "farrapa-colors": "1.0.4",
-    "rollup": "^2.67.2",
-    "rollup-plugin-livereload": "^2.0.5",
-    "rollup-plugin-node-polyfills": "^0.2.1",
-    "rollup-plugin-terser": "^7.0.2"
+    "xeira": "^0.0.36"
   },
   "dependencies": {
-    "moment": "^2.29.1"
+    "moment": ">=2.29.1"
   },
   "peerDependencies": {
     "moment": ">=2.29.1"
+  },
+  "babel": {
+    "extends": "./node_modules/xeira/configs/babel.cjs"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/xeira/configs/eslint.cjs"
+    ]
   }
 }
