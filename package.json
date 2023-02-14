@@ -48,7 +48,7 @@
   ],
   "devDependencies": {
     "farrapa-colors": "1.0.4",
-    "xeira": "^0.0.36"
+    "xeira": "^0.0.40"
   },
   "dependencies": {
     "moment": ">=2.29.1"
