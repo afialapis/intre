@@ -1,5 +1,5 @@
 // const expect= global.expect
-import { red, green, blue, blue_light } from 'farrapa-colors'
+import { red, green, blue, blue_light } from 'farrapa/colors'
 
 describe('Intre', function () {
   this.timeout(100)
