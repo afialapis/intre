@@ -7,6 +7,7 @@ describe('Intre', function () {
   it("should check several intre functions", async () => {   
     
     const {
+      init_locale,
       epoch_now,
       epoch_noon,
       epoch_to_str,
@@ -34,7 +35,8 @@ describe('Intre', function () {
       epoch_last_of_week,
       epoch_range
     } = global.intre
-
+    
+    init_locale('es')
 
     function check(e,n) {
       console.log(`${blue(n)} is ${blue_light(epoch_to_str(e, 'DD MMM YYYY HH:mm:ss'))}`)

@@ -1,5 +1,4 @@
 import moment from 'moment'
-moment.locale('es')
 
 function _moment(e) {
   if (e==undefined) {
@@ -10,6 +9,14 @@ function _moment(e) {
   }
   return moment.unix(e)
 }
+
+//
+// Locales
+//
+export function init_locale(lang= 'es') {
+  moment.locale(lang)
+}
+
 
 // 
 // Getters

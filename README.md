@@ -18,6 +18,11 @@ Working with dates in a simple way: using [Unix Epoch times](https://en.wikipedi
 
 # API
 
+## Init locale
+
+### `init_locale(lang)`
+
+Must be called once, when loading your app.
 
 ## Getters
 
