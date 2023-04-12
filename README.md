@@ -13,111 +13,149 @@ Working with dates in a simple way: using [Unix Epoch times](https://en.wikipedi
 
 # Intro
 
-`intre` is a wrap over [moment.js](https://momentjs.com/) providing an API to work with `int`-typed dates.
+`intre` is a wrap over [day.js](https://day.js.org/) providing an API to work with `int`-typed dates.
 
 
 # API
 
 ## Init locale
 
-### `init_locale(lang)`
+### `async intre_locale_init(key)`
+
+Locale loaded by default is `en`.
+
+You may want to change it 
 
 Must be called once, when loading your app.
 
 ## Getters
 
-### `epoch_now()`
+### `intre_now()`
 
-### `epoch_noon(e)`
+### `intre_noon(e)`
 
-### `epoch_from_date(d)`
+### `intre_from_date(d)`
 
-### `epoch_from_str(e, fmt = 'DD/MM/YYYY')`
+### `intre_from_str(e, fmt = 'DD/MM/YYYY')`
 
-### `epoch_from_parts(y, m, d)`
+### `intre_from_parts(y, m, d)`
 
 ## Converters
 
-### `epoch_to_str(e, fmt = 'DD/MM/YYYY')`
+### `intre_to_date(e)`
+
+### `intre_to_str(e, fmt = 'DD/MM/YYYY')`
+
+### `intre_to_parts(e)`
+
 
 ## Prettiers
 
-### `epoch_pretty_from_now(e)`
+### `intre_pretty_from_now(e)`
 
-### `epoch_pretty_short(e)`
+### `intre_pretty_short(e)`
 
 Format: _"D MMM"_
 
-### `epoch_pretty_medium(e)`
+### `intre_pretty_medium(e)`
 
 Format: _"DD MMM 'YY"_
 
-### `epoch_pretty_long(e)`
+### `intre_pretty_long(e)`
   
 Format: _"DD MMMM YYYY"_
 
-### `epoch_pretty_short_with_time(e)`
+### `intre_pretty_short_with_time(e)`
   
 Format: _"D MMM a las HH:MM"
 
-### `epoch_pretty_short_with_from_now(e)`
+### `intre_pretty_short_with_from_now(e)`
   
 Format: _"D MMM (<from Now>)"_
 
-### `epoch_pretty_burocratic(e)`
+### `intre_pretty_burocratic(e)`
   
 Format: _"D de MMMM de YYYY"_
 
 
 ## Extract date parts
 
+### `intre_get_seconds(e)`
 
-### `epoch_get_seconds(e)`
+### `intre_get_minutes(e)`
 
-### `epoch_get_minutes(e)`
+### `intre_get_hour(e)`
 
-### `epoch_get_hour(e)`
+### `intre_get_day(e)`
 
-### `epoch_get_day(e)`
+### `intre_get_week_day(e)`
 
-### `epoch_get_week_day(e)`
+### `intre_get_month(e)`
 
-### `epoch_get_month(e)`
+### `intre_get_year(e)`
 
-### `epoch_get_year(e)`
+### `intre_get_month_name(month, long=false)`
 
-### `epoch_get_month_name(month, long=false)`
 
 ## Checks
 
-### `epoch_are_same_day(e1, e2)`
+### `intre_are_same(e1, e2, what= 'seconds')`
 
-### `epoch_diff(e1, e2, w= 'seconds')`
+`what` can be `milliseconds`, `seconds` (default), `minutes`, `hours`, `day`, `month`, `year`
+
+### `intre_diff(e1, e2, what= 'seconds', decimals= false)`
+
+`what` can be `milliseconds`, `seconds` (default), `minutes`, `hours`, `day`, `month`, `year`
 
 ##  Add and subtract
 
-### `epoch_add_days(e, n)`
+### `intre_add_days(e, n)`
 
-### `epoch_add_business_days(e, n, includeSaturdays= false)`
+### `intre_add_business_days(e, n, includeSaturdays= false)`
 
-### `epoch_add_months(e, n)`
+### `intre_add_months(e, n)`
 
-### `epoch_add_years(e, n)`
+### `intre_add_years(e, n)`
 
-### `epoch_sub_months(e, n)`
+### `intre_sub_days(e, n)`
+
+### `intre_sub_months(e, n)`
+
+### `intre_sub_years(e, n)`
 
 ## Search close dates
 
-### `epoch_first_of_month(e)`
+### `intre_first_of_week(e)`
 
-### `epoch_last_of_month(e)`
+### `intre_last_of_week(e)`
 
-### `epoch_first_of_week(e)`
+### `intre_first_of_month(e)`
 
-### `epoch_last_of_week(e)`
+### `intre_last_of_month(e)`
+
+### `intre_first_of_year(e)`
+
+### `intre_last_of_year(e)`
+
 
 ## Ranges
 
-### `epoch_range(efrom, eto, includeTo= true)`
+### `intre_range(efrom, eto, includeTo= true)`
 
 
+## List locale data
+
+
+### `intre_list_first_day_of_week()`
+
+### `intre_list_months()`
+
+### `intre_list_months_short()`
+
+### `intre_list_weekdays()`
+
+### `intre_list_weekdays_short()`
+
+### `intre_list_weekdays_min()`
+
+### `intre_list_long_date_format(f= 'L')`

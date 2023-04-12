@@ -10,6 +10,7 @@
   "minifier": "none",
   "bundle_folder": "./dist",
   "bundler": "rollup",
+  "bundle_inline_dynamic_imports": true,
   "test_folder": "./test",
   "demo_mode": null
 }

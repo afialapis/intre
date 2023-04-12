@@ -46,15 +46,11 @@
     "js",
     "util"
   ],
-  "devDependencies": {
-    "tinguir": "^0.0.3",
-    "xeira": "^0.3.0"
-  },
-  "dependencies": {
-    "moment": ">=2.29.1"
-  },
   "peerDependencies": {
-    "moment": ">=2.29.1"
+    "dayjs": "^1.11.7"
+  },
+  "devDependencies": {
+    "xeira": "^0.3.3"
   },
   "eslintConfig": {
     "extends": [
