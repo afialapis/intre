@@ -1,4 +1,5 @@
 import moment from 'moment'
+moment.locale('es')
 
 function _moment(e) {
   if (e==undefined) {
