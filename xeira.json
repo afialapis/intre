@@ -12,5 +12,6 @@
   "bundler": "rollup",
   "bundle_inline_dynamic_imports": true,
   "test_folder": "./test",
-  "demo_mode": null
+  "demo_mode": null,
+  "verbose": true
 }

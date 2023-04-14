@@ -15,14 +15,14 @@ dayjs.extend(dayOfYearPlugin)
 
 let _intre_loaded_locales= ['en'] 
 
-function _dayjs(e) {
-  if (e==undefined) {
+function _dayjs(i) {
+  if (i==undefined) {
     return dayjs()
   }
-  if (typeof e === 'object') {
-    return e
+  if (typeof i === 'object') {
+    return i
   }
-  return dayjs.unix(e)
+  return dayjs.unix(i)
 }
 
 //
@@ -31,7 +31,8 @@ function _dayjs(e) {
 export async function intre_locale_init(key= 'es') {
   try {
     if (_intre_loaded_locales.indexOf(key)<0) {
-      await import(`dayjs/locale/${key}.js`)
+      const ext= `${key}.js`
+      const _ = await import('dayjs/locale/' + ext)
     }
     dayjs.locale(key)
     _intre_loaded_locales.push(key)
@@ -49,11 +50,11 @@ export function intre_now() {
   return dayjs().unix();
 }
 
-export function intre_noon(e) {
-  if (e===undefined) {
-    e= intre_now();
+export function intre_noon(i) {
+  if (i===undefined) {
+    i= intre_now();
   }
-  return _dayjs(e)
+  return _dayjs(i)
           .set('hour', 0).set('minute', 0).set('second', 0)
           .unix()
 }
@@ -62,11 +63,11 @@ export function intre_from_date(d) {
   return dayjs(d).unix();
 }
 
-export function intre_from_str (e, fmt = 'DD/MM/YYYY') {
-  if (!e)
+export function intre_from_str (s, fmt = 'DD/MM/YYYY') {
+  if (!s)
     return undefined
 
-  return dayjs(e,fmt).unix()
+  return dayjs(s,fmt).unix()
 }
 
 export function intre_from_parts(y, m, d) {
@@ -77,21 +78,21 @@ export function intre_from_parts(y, m, d) {
 // 
 // Converters
 // 
-export function intre_to_date (e) {
-  return _dayjs(e).toDate()
+export function intre_to_date (i) {
+  return _dayjs(i).toDate()
 }
 
-export function intre_to_str (e, fmt = 'DD/MM/YYYY') {
-  if (!e)
+export function intre_to_str (i, fmt = 'DD/MM/YYYY') {
+  if (!i)
     return ''
 
-  const m = _dayjs(e)
+  const m = _dayjs(i)
 
   return m.format(fmt)
 }
 
-export function intre_to_parts (e) {
-  const m= _dayjs(e)
+export function intre_to_parts (i) {
+  const m= _dayjs(i)
   const ye= m.year()
   const mo= m.month()
   const da= m.date()
@@ -103,39 +104,39 @@ export function intre_to_parts (e) {
 // Prettiers
 // 
 
-export function intre_pretty_from_now(e) {
-  if (!e)
+export function intre_pretty_from_now(i) {
+  if (!i)
     return ''
 
-  const m = _dayjs(e)
+  const m = _dayjs(i)
 
   return m.fromNow()
 }
 
-export function intre_pretty_short(e) {
-  return intre_to_str(e, 'D MMM')
+export function intre_pretty_short(i) {
+  return intre_to_str(i, 'D MMM')
 }
 
-export function intre_pretty_medium(e) {
-  return intre_to_str(e, 'DD MMM [\']YY')
+export function intre_pretty_medium(i) {
+  return intre_to_str(i, 'DD MMM [\']YY')
 }
 
-export function intre_pretty_long(e) {
-  return intre_to_str(e, 'DD MMMM YYYY')
+export function intre_pretty_long(i) {
+  return intre_to_str(i, 'DD MMMM YYYY')
 }
 
-export function intre_pretty_short_with_time(e) {
-  return intre_to_str(e, 'D MMM [a las] HH:mm')
+export function intre_pretty_short_with_time(i) {
+  return intre_to_str(i, 'D MMM [a las] HH:mm')
 }
 
-export function intre_pretty_short_with_from_now(e) {
-  const base = intre_to_str(e, 'D MMM')
-  const frnow = intre_pretty_from_now(e)
+export function intre_pretty_short_with_from_now(i) {
+  const base = intre_to_str(i, 'D MMM')
+  const frnow = intre_pretty_from_now(i)
   return `${base} (${frnow})`
 }
 
-export function intre_pretty_burocratic(e) {
-  return intre_to_str(e, 'D [de] MMMM [de] YYYY')
+export function intre_pretty_burocratic(i) {
+  return intre_to_str(i, 'D [de] MMMM [de] YYYY')
 }
 
 
@@ -144,32 +145,32 @@ export function intre_pretty_burocratic(e) {
 // Extract date parts
 // 
 
-export function intre_get_seconds (e) { return _dayjs(e).second(); }
-export function intre_get_minutes (e) { return _dayjs(e).minute(); }
-export function intre_get_hour    (e) { return _dayjs(e).hour  (); }
-export function intre_get_day     (e) { return _dayjs(e).date  (); }
-export function intre_get_week_day(e) { return _dayjs(e).day   (); }
-export function intre_get_month   (e) { return _dayjs(e).month (); }
-export function intre_get_year    (e) { return _dayjs(e).year  (); }
+export function intre_get_seconds (i) { return _dayjs(i).second(); }
+export function intre_get_minutes (i) { return _dayjs(i).minute(); }
+export function intre_get_hour    (i) { return _dayjs(i).hour  (); }
+export function intre_get_day     (i) { return _dayjs(i).date  (); }
+export function intre_get_week_day(i) { return _dayjs(i).day   (); }
+export function intre_get_month   (i) { return _dayjs(i).month (); }
+export function intre_get_year    (i) { return _dayjs(i).year  (); }
 
-export function intre_get_month_name(e, long=false) {
-  if (! e)
+export function intre_get_month_name(i, long=false) {
+  if (!i)
     return ''
   const fmt= long ? 'MMMM' : 'MMM'
-  return _dayjs(e).format(fmt)
+  return _dayjs(i).format(fmt)
 }
 
 
 // 
 // Checks
 // 
-export function intre_are_same (e1, e2, what= 'seconds', decimals= false) {
-  return _dayjs(e1).isSame(_dayjs(e2), what, decimals)
+export function intre_are_same (i1, i2, what= 'seconds', decimals= false) {
+  return _dayjs(i1).isSame(_dayjs(i2), what, decimals)
 
 }
 
-export function intre_diff(e1, e2, what= 'seconds') {
-  return _dayjs(e1).diff(_dayjs(e2), what)
+export function intre_diff(i1, i2, what= 'seconds') {
+  return _dayjs(i1).diff(_dayjs(i2), what)
 }
 
 
@@ -177,11 +178,11 @@ export function intre_diff(e1, e2, what= 'seconds') {
 // Add and subtract
 // 
 
-export function intre_add_days(e, n) {
-  return _dayjs(e).add(n, 'days').unix()
+export function intre_add_days(i, n) {
+  return _dayjs(i).add(n, 'days').unix()
 }
 
-export function intre_add_business_days(e, n, includeSaturdays= false) {
+export function intre_add_business_days(i, n, includeSaturdays= false) {
   const exclude_days= [
     0 // Sunday
   ]
@@ -192,7 +193,7 @@ export function intre_add_business_days(e, n, includeSaturdays= false) {
   }
 
   let days_remaining = n
-  let mom= _dayjs(e)
+  let mom= _dayjs(i)
 
   while (days_remaining > 0) {
     mom= mom.add(1, 'days');
@@ -204,24 +205,24 @@ export function intre_add_business_days(e, n, includeSaturdays= false) {
   return mom.unix()
 }
 
-export function intre_add_months(e, n) {
-  return _dayjs(e).add(n, 'months').unix()
+export function intre_add_months(i, n) {
+  return _dayjs(i).add(n, 'months').unix()
 }
 
-export function intre_add_years(e, n) {
-  return _dayjs(e).add(n, 'years').unix()
+export function intre_add_years(i, n) {
+  return _dayjs(i).add(n, 'years').unix()
 }
 
-export function intre_sub_days(e, n) {
-  return _dayjs(e).subtract(n, 'days').unix()
+export function intre_sub_days(i, n) {
+  return _dayjs(i).subtract(n, 'days').unix()
 }
 
-export function intre_sub_months(e, n) {
-  return _dayjs(e).subtract(n, 'months').unix()
+export function intre_sub_months(i, n) {
+  return _dayjs(i).subtract(n, 'months').unix()
 }  
 
-export function intre_sub_years(e, n) {
-  return _dayjs(e).subtract(n, 'years').unix()
+export function intre_sub_years(i, n) {
+  return _dayjs(i).subtract(n, 'years').unix()
 }
 
 
@@ -229,28 +230,28 @@ export function intre_sub_years(e, n) {
 // Search close dates
 // 
 
-export function intre_first_of_week(e) {
-  return intre_noon(_dayjs(e).weekday(0))
+export function intre_first_of_week(i) {
+  return intre_noon(_dayjs(i).weekday(0))
 }
 
-export function intre_last_of_week(e) {
-  return intre_noon(_dayjs(e).weekday(6))
+export function intre_last_of_week(i) {
+  return intre_noon(_dayjs(i).weekday(6))
 }
 
-export function intre_first_of_month(e) {
-  return intre_noon(_dayjs(e).date(1))
+export function intre_first_of_month(i) {
+  return intre_noon(_dayjs(i).date(1))
 }
 
-export function intre_last_of_month(e) {
-  return intre_noon(_dayjs(e).endOf('month'))
+export function intre_last_of_month(i) {
+  return intre_noon(_dayjs(i).endOf('month'))
 }
 
-export function intre_first_of_year(e) {
-  return intre_noon(_dayjs(e).dayOfYear(1))
+export function intre_first_of_year(i) {
+  return intre_noon(_dayjs(i).dayOfYear(1))
 }
 
-export function intre_last_of_year(e) {
-  return intre_noon(_dayjs(e).endOf('year'))
+export function intre_last_of_year(i) {
+  return intre_noon(_dayjs(i).endOf('year'))
 }
 
 
@@ -258,15 +259,15 @@ export function intre_last_of_year(e) {
 // Ranges
 // 
 
-export function intre_range(efrom, eto, includeTo= true) {
+export function intre_range(iFrom, iTo, includeTo= true) {
   const range= []
-  let e= intre_noon(efrom)
-  let epTo= intre_noon(eto)
+  let iiFrom= intre_noon(iFrom)
+  let iiTo= intre_noon(iTo)
   while (includeTo 
-          ? e<=epTo
-          : e<epTo) {
-    range.push(e)
-    e= intre_add_days(e, 1)
+          ? iiFrom<=iiTo
+          : iiFrom<iiTo) {
+    range.push(iiFrom)
+    iiFrom= intre_add_days(iiFrom, 1)
   }
 
   return range

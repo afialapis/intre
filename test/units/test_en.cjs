@@ -114,17 +114,17 @@ describe('Intre - EN locale', function () {
     const h15= 15*60*60
     const m33= 33*60
 
-    const e= MAY_THE_FORCE + h15 + m33 + 42
+    const i= MAY_THE_FORCE + h15 + m33 + 42
 
-    expect(intre_get_seconds(e)).to.equal(42)
-    expect(intre_get_minutes(e)).to.equal(33)
-    expect(intre_get_hour(e)).to.equal(15)
-    expect(intre_get_day(e)).to.equal(4)
-    expect(intre_get_week_day(e)).to.equal(3)
-    expect(intre_get_month(e)).to.equal(4)
-    expect(intre_get_year(e)).to.equal(2022)
-    expect(intre_get_month_name(e, false)).to.equal('May')
-    expect(intre_get_month_name(e, true)).to.equal('May')
+    expect(intre_get_seconds(i)).to.equal(42)
+    expect(intre_get_minutes(i)).to.equal(33)
+    expect(intre_get_hour(i)).to.equal(15)
+    expect(intre_get_day(i)).to.equal(4)
+    expect(intre_get_week_day(i)).to.equal(3)
+    expect(intre_get_month(i)).to.equal(4)
+    expect(intre_get_year(i)).to.equal(2022)
+    expect(intre_get_month_name(i, false)).to.equal('May')
+    expect(intre_get_month_name(i, true)).to.equal('May')
   })  
 
   it("check checkers", async () => {   
@@ -145,19 +145,19 @@ describe('Intre - EN locale', function () {
     const h16= 16*h
     const d1= 1*d
 
-    const e= MAY_THE_FORCE + h15 + m33 + 42
+    const i= MAY_THE_FORCE + h15 + m33 + 42
 
-    expect(intre_are_same(e, MAY_THE_FORCE + h15 + m33 + 42, 'seconds')).to.equal(true)
-    expect(intre_are_same(e, MAY_THE_FORCE + h15 + m33, 'seconds')).to.equal(false)
+    expect(intre_are_same(i, MAY_THE_FORCE + h15 + m33 + 42, 'seconds')).to.equal(true)
+    expect(intre_are_same(i, MAY_THE_FORCE + h15 + m33, 'seconds')).to.equal(false)
     
-    expect(intre_are_same(e, MAY_THE_FORCE + h15 + m33, 'minutes')).to.equal(true)
-    expect(intre_are_same(e, MAY_THE_FORCE + h15 + m34, 'minutes')).to.equal(false)
+    expect(intre_are_same(i, MAY_THE_FORCE + h15 + m33, 'minutes')).to.equal(true)
+    expect(intre_are_same(i, MAY_THE_FORCE + h15 + m34, 'minutes')).to.equal(false)
     
-    expect(intre_are_same(e, MAY_THE_FORCE + h15, 'hours')).to.equal(true)
-    expect(intre_are_same(e, MAY_THE_FORCE + h16, 'hours')).to.equal(false)
+    expect(intre_are_same(i, MAY_THE_FORCE + h15, 'hours')).to.equal(true)
+    expect(intre_are_same(i, MAY_THE_FORCE + h16, 'hours')).to.equal(false)
     
-    expect(intre_are_same(e, MAY_THE_FORCE + d1, 'day')).to.equal(false)
-    expect(intre_are_same(e, MAY_THE_FORCE + h15, 'day')).to.equal(true)
+    expect(intre_are_same(i, MAY_THE_FORCE + d1, 'day')).to.equal(false)
+    expect(intre_are_same(i, MAY_THE_FORCE + h15, 'day')).to.equal(true)
 
     expect(intre_diff(MAY_THE_FORCE, MAY_THE_FORCE + h15 + m33 + 42, 'seconds')).to.equal(-1 * (h15 + m33 + 42))
     expect(intre_diff(MAY_THE_FORCE, MAY_THE_FORCE + h15 + m34, 'minutes')).to.equal(-1 * (15*60 + 34))
