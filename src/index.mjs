@@ -31,8 +31,7 @@ function _dayjs(i) {
 export async function intre_locale_init(key= 'es') {
   try {
     if (_intre_loaded_locales.indexOf(key)<0) {
-      const ext= `${key}.js`
-      const _ = await import('dayjs/locale/' + ext)
+      const _ = await import(`dayjs/locale/${key}.js`)
     }
     dayjs.locale(key)
     _intre_loaded_locales.push(key)
