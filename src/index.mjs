@@ -6,6 +6,11 @@ import localeDataPlugin from 'dayjs/plugin/localeData.js'
 import relativeTimePlugin from 'dayjs/plugin/relativeTime.js'
 import dayOfYearPlugin from 'dayjs/plugin/dayOfYear.js'
 
+import _localeES from 'dayjs/locale/es.js'
+//import _localeFR from 'dayjs/locale/fr.js'
+//import _localePT from 'dayjs/locale/pt.js'
+
+
 dayjs.extend(customParseFormatPlugin)
 dayjs.extend(arraySupportPlugin)
 dayjs.extend(weekdayPlugin)
@@ -13,7 +18,7 @@ dayjs.extend(localeDataPlugin)
 dayjs.extend(relativeTimePlugin)
 dayjs.extend(dayOfYearPlugin)
 
-let _intre_loaded_locales= ['en'] 
+let _intre_loaded_locales= ['en', 'es'] 
 
 function _dayjs(i) {
   if (i==undefined) {
@@ -31,7 +36,9 @@ function _dayjs(i) {
 export async function intre_locale_init(key= 'es') {
   try {
     if (_intre_loaded_locales.indexOf(key)<0) {
-      const _ = await import(`dayjs/locale/${key}.js`)
+      const _ = typeof window === 'object'
+        ? await import(`https://unpkg.com/dayjs/locale/${key}.js`)
+        : await import(`dayjs/locale/${key}.js`)
     }
     dayjs.locale(key)
     _intre_loaded_locales.push(key)
