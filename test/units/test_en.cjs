@@ -68,24 +68,29 @@ describe('Intre - EN locale', function () {
   it("check prettiers", async () => {   
     
     const {
-      intre_get_year,
+      intre_now,
       intre_pretty_from_now,
       intre_pretty_short,
       intre_pretty_medium,
       intre_pretty_long,
       intre_pretty_short_with_time,
       intre_pretty_short_with_from_now,
-      intre_pretty_burocratic
+      intre_pretty_burocratic,
+      intre_diff
     } = global.intre
 
-    const mtf_year= intre_get_year(MAY_THE_FORCE)
-    const now_year= intre_get_year()
+    const mdiff = intre_diff(intre_now(), MAY_THE_FORCE, 'months')
+    let ydiff = 2
+    if (mdiff >= 24) {
+      ydiff = Math.round(mdiff/24)
+    }
     let ago
-    if ((now_year-mtf_year)==1) {
+    if (mdiff < 18) {
       ago= 'a year ago'
     } else {
-      const numname= {2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six'}
-      ago= `${numname[now_year-mtf_year]} years ago`
+      //const numname= {2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six'}
+      //ago= `${numname[ydiff]} years ago`
+      ago= `${ydiff} years ago`
     }
 
     expect(intre_pretty_from_now(MAY_THE_FORCE)).to.equal(ago)
