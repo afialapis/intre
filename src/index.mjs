@@ -33,20 +33,40 @@ function _dayjs(i) {
 //
 // Locales
 //
-export async function intre_locale_init(key= 'es') {
+export async function intre_locale_load(key= 'es') {
   try {
     if (_intre_loaded_locales.indexOf(key)<0) {
-      const _ = typeof window === 'object'
-        ? await import(`https://unpkg.com/dayjs/locale/${key}.js`)
-        : await import(`dayjs/locale/${key}.js`)
+      const resp = await fetch(`https://unpkg.com/dayjs@1.11.10/esm/locale/${key}.js`)
+      let code = await resp.text()
+      code = code.replace("import dayjs from '../index';", '')
+      code = code.replace("export default locale;", '')
+      eval(code)
+
+      _intre_loaded_locales.push(key)
+      //const _ = typeof window === 'object'
+      //  ? await import(`https://unpkg.com/dayjs/locale/${key}.js`)
+      //  : await import(`dayjs/locale/${key}.js`)
     }
-    dayjs.locale(key)
-    _intre_loaded_locales.push(key)
+    
   } catch(err) {
     console.error(err)
   }
   
 }
+
+export async function intre_locale_init(key= 'es') {
+  try {
+    if (_intre_loaded_locales.indexOf(key)<0) {
+      await intre_locale_load(key)
+    }
+    dayjs.locale(key)
+    
+  } catch(err) {
+    console.error(err)
+  }
+  
+}
+
 
 
 // 
