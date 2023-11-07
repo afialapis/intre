@@ -5,11 +5,7 @@ import weekdayPlugin from 'dayjs/plugin/weekday.js'
 import localeDataPlugin from 'dayjs/plugin/localeData.js'
 import relativeTimePlugin from 'dayjs/plugin/relativeTime.js'
 import dayOfYearPlugin from 'dayjs/plugin/dayOfYear.js'
-
 import _localeES from 'dayjs/locale/es.js'
-//import _localeFR from 'dayjs/locale/fr.js'
-//import _localePT from 'dayjs/locale/pt.js'
-
 
 dayjs.extend(customParseFormatPlugin)
 dayjs.extend(arraySupportPlugin)
