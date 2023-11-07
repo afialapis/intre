@@ -20,11 +20,13 @@ Working with dates in a simple way: using [Unix Epoch times](https://en.wikipedi
 
 ## Init locale
 
-### `async intre_locale_init(key)`
+### `async intre_locale_init(key)` and `async intre_locale_load(key)`
 
-Locale loaded by default is `en`.
+Preloaded locales are `en` (default) and `es`.
 
-You may want to change it 
+You may want to switch between preloaded locales with `async intre_locale_init(key)`. 
+
+If it is not preloaded, `intre` will load it (requires a network fetch) by calling `async intre_locale_load(key)`.
 
 Must be called once, when loading your app.
 
