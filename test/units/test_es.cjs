@@ -112,7 +112,8 @@ describe('Intre - ES locale', function () {
       intre_get_week_day,
       intre_get_month,
       intre_get_year,
-      intre_get_month_name
+      intre_get_month_name,
+      intre_get_day_name
     } = global.intre
 
 
@@ -128,8 +129,10 @@ describe('Intre - ES locale', function () {
     expect(intre_get_week_day(i)).to.equal(3)
     expect(intre_get_month(i)).to.equal(4)
     expect(intre_get_year(i)).to.equal(2022)
-    expect(intre_get_month_name(i, false)).to.equal('may')
-    expect(intre_get_month_name(i, true)).to.equal('mayo')
+    expect(intre_get_month_name(i, false)).to.equal('May')
+    expect(intre_get_month_name(i, true)).to.equal('Mayo')
+    expect(intre_get_day_name(i, false)).to.equal('Mi')
+    expect(intre_get_day_name(i, true)).to.equal('Miércoles')
   })  
 
   it("check checkers", async () => {   

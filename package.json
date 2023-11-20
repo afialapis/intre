@@ -1,6 +1,6 @@
 {
   "name": "intre",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "simple dates with UNIX Epoch Times",
   "author": "Donato Lorenzo <donato@afialapis.com>",
   "contributors": [

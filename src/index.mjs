@@ -26,6 +26,16 @@ function _dayjs(i) {
   return dayjs.unix(i)
 }
 
+function _to_title_case(str) {
+  return str.replace(
+    /\w\S*/g,
+    function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
+}
+
+
 //
 // Locales
 //
@@ -179,9 +189,15 @@ export function intre_get_month_name(i, long=false) {
   if (!i)
     return ''
   const fmt= long ? 'MMMM' : 'MMM'
-  return _dayjs(i).format(fmt)
+  return _to_title_case(_dayjs(i).format(fmt))
 }
 
+export function intre_get_day_name(i, long=false) {
+  if (!i)
+    return ''
+  const fmt= long ? 'dddd' : 'dd'
+  return _to_title_case(_dayjs(i).format(fmt))
+}
 
 // 
 // Checks
