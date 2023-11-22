@@ -4,16 +4,43 @@ const MAY_THE_FORCE = 1651615200
 describe('Intre - EN locale', function () {
   this.timeout(100)
 
-
   it("switch to EN locale", async () => {   
     
     const {
-      intre_locale_init,
+      intre_locale_init
     } = global.intre
     
     await intre_locale_init('en')
   })
 
+
+  it("check week days", async () => {   
+    
+    const {
+      intre_get_week_day,
+      intre_set_week_day,
+      intre_get_week_day_name
+    } = global.intre
+
+    expect(intre_get_week_day(MAY_THE_FORCE)).to.equal(3)
+    expect(intre_get_week_day_name(MAY_THE_FORCE, false)).to.equal('We')
+    expect(intre_get_week_day_name(MAY_THE_FORCE, true)).to.equal('Wednesday')
+
+    const i= intre_set_week_day(MAY_THE_FORCE, 4) 
+
+    expect(intre_get_week_day_name(i, false)).to.equal('Th')
+    expect(intre_get_week_day_name(i, true)).to.equal('Thursday')
+  })  
+
+  it("check month names", async () => {   
+    
+    const {
+      intre_get_month_name
+    } = global.intre
+
+    expect(intre_get_month_name(MAY_THE_FORCE, false)).to.equal('May')
+    expect(intre_get_month_name(MAY_THE_FORCE, true)).to.equal('May')
+  })  
 
   it("check prettiers", async () => {   
     
@@ -50,24 +77,6 @@ describe('Intre - EN locale', function () {
     expect(intre_pretty_short_with_time(MAY_THE_FORCE + 15*60*60 + 30*60)).to.equal('4 May a las 15:30')
     expect(intre_pretty_short_with_from_now(MAY_THE_FORCE)).to.equal(`4 May (${ago})`)
     expect(intre_pretty_burocratic(MAY_THE_FORCE)).to.equal('4 de May de 2022')
-  })  
-
-  it("check extractors (names)", async () => {   
-    
-    const {
-      intre_get_month_name,
-      intre_get_day_name
-    } = global.intre
-
-    const h15= 15*60*60
-    const m33= 33*60
-
-    const i= MAY_THE_FORCE + h15 + m33 + 42
-
-    expect(intre_get_month_name(i, false)).to.equal('May')
-    expect(intre_get_month_name(i, true)).to.equal('May')
-    expect(intre_get_day_name(i, false)).to.equal('We')
-    expect(intre_get_day_name(i, true)).to.equal('Wednesday')
   })  
 
   it("check close dates (depends on week first day)", async () => {   

@@ -8,11 +8,41 @@ describe('Intre - ES locale', function () {
   it("switch to ES locale", async () => {   
     
     const {
-      intre_locale_init,
+      intre_locale_init
     } = global.intre
     
     await intre_locale_init('es')
   })
+
+
+  it("check week days", async () => {   
+    
+    const {
+      intre_get_week_day,
+      intre_set_week_day,
+      intre_get_week_day_name
+    } = global.intre
+
+    expect(intre_get_week_day(MAY_THE_FORCE)).to.equal(2)
+    expect(intre_get_week_day_name(MAY_THE_FORCE, false)).to.equal('Mi')
+    expect(intre_get_week_day_name(MAY_THE_FORCE, true)).to.equal('Miércoles')
+
+    const i= intre_set_week_day(MAY_THE_FORCE, 3) 
+
+    expect(intre_get_week_day_name(i, false)).to.equal('Ju')
+    expect(intre_get_week_day_name(i, true)).to.equal('Jueves')
+  })  
+
+  it("check month names", async () => {   
+    
+    const {
+      intre_get_month_name
+    } = global.intre
+
+    expect(intre_get_month_name(MAY_THE_FORCE, false)).to.equal('May')
+    expect(intre_get_month_name(MAY_THE_FORCE, true)).to.equal('Mayo')
+  })  
+
 
   it("check prettiers", async () => {   
     
@@ -49,25 +79,6 @@ describe('Intre - ES locale', function () {
     expect(intre_pretty_short_with_time(MAY_THE_FORCE + 15*60*60 + 30*60)).to.equal('4 may a las 15:30')
     expect(intre_pretty_short_with_from_now(MAY_THE_FORCE)).to.equal(`4 may (${ago})`)
     expect(intre_pretty_burocratic(MAY_THE_FORCE)).to.equal('4 de mayo de 2022')
-  })  
-
-  it("check extractors (names)", async () => {   
-    
-    const {
-      intre_get_month_name,
-      intre_get_day_name
-    } = global.intre
-
-
-    const h15= 15*60*60
-    const m33= 33*60
-
-    const i= MAY_THE_FORCE + h15 + m33 + 42
-
-    expect(intre_get_month_name(i, false)).to.equal('May')
-    expect(intre_get_month_name(i, true)).to.equal('Mayo')
-    expect(intre_get_day_name(i, false)).to.equal('Mi')
-    expect(intre_get_day_name(i, true)).to.equal('Miércoles')
   })  
 
   it("check close dates (depends on week first day)", async () => {   

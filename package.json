@@ -1,6 +1,6 @@
 {
   "name": "intre",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "simple dates with UNIX Epoch Times",
   "author": "Donato Lorenzo <donato@afialapis.com>",
   "contributors": [
@@ -35,7 +35,7 @@
     "clean-site": "rm -rf arredemo",
     "clean-all": "npm run --silent clean-lib && npm run --silent clean-dist && npm run --silent clean-site",
     "lint": "npx xeira lint",
-    "test": "npx xeira test --files=./test/before.mjs,./test/units/*.cjs",
+    "test": "npx xeira test --files=./test/before.mjs,./test/units/test_i18n.cjs,./test/units/test_en.cjs,./test/units/test_es.cjs,./test/units/test_it.cjs",
     "lib": "npm run --silent clean-lib && npx xeira transpile",
     "dist": "npm run --silent clean-dist && npx xeira bundle",
     "site": "npm run --silent clean-site && npx xeira site",

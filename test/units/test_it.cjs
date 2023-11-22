@@ -14,6 +14,35 @@ describe('Intre - IT locale', function () {
     await intre_locale_init('it')
   })
 
+  it("check week days", async () => {   
+    
+    const {
+      intre_get_week_day,
+      intre_set_week_day,
+      intre_get_week_day_name
+    } = global.intre
+
+    expect(intre_get_week_day(MAY_THE_FORCE)).to.equal(2)
+    expect(intre_get_week_day_name(MAY_THE_FORCE, false)).to.equal('Me')
+    expect(intre_get_week_day_name(MAY_THE_FORCE, true)).to.equal('Mercoledì')
+
+    const i= intre_set_week_day(MAY_THE_FORCE, 3) 
+
+    expect(intre_get_week_day_name(i, false)).to.equal('Gi')
+    expect(intre_get_week_day_name(i, true)).to.equal('Giovedì')
+  })  
+
+  it("check month names", async () => {   
+    
+    const {
+      intre_get_month_name
+    } = global.intre
+
+    expect(intre_get_month_name(MAY_THE_FORCE, false)).to.equal('Mag')
+    expect(intre_get_month_name(MAY_THE_FORCE, true)).to.equal('Maggio')
+  })  
+
+
   it("check prettiers", async () => {   
     
     const {
@@ -51,25 +80,6 @@ describe('Intre - IT locale', function () {
     expect(intre_pretty_burocratic(MAY_THE_FORCE)).to.equal('4 de maggio de 2022')
   })  
 
-  it("check extractors (names)", async () => {   
-    
-    const {
-      intre_get_month_name,
-      intre_get_day_name
-    } = global.intre
-
-
-    const h15= 15*60*60
-    const m33= 33*60
-
-    const i= MAY_THE_FORCE + h15 + m33 + 42
-
-    expect(intre_get_month_name(i, false)).to.equal('Mag')
-    expect(intre_get_month_name(i, true)).to.equal('Maggio')
-    expect(intre_get_day_name(i, false)).to.equal('Me')
-    expect(intre_get_day_name(i, true)).to.equal('Mercoledì')
-  })  
-
   it("check close dates (depends on week first day)", async () => {   
     
     const {
@@ -81,7 +91,7 @@ describe('Intre - IT locale', function () {
     expect(intre_first_of_week(MAY_THE_FORCE)).to.equal(intre_from_str('02/05/2022', 'DD/MM/YYYY'))
     expect(intre_last_of_week(MAY_THE_FORCE)).to.equal(intre_from_str('08/05/2022', 'DD/MM/YYYY'))
   })  
-    
+
   it("check locale datas", async () => {   
     const {
       intre_list_first_day_of_week,
