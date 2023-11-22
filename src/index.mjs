@@ -30,9 +30,9 @@ function _to_title_case(str) {
   return str.replace(
     /\w\S*/g,
     function(txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     }
-  );
+  )
 }
 
 
@@ -44,8 +44,8 @@ export async function intre_locale_load(key= 'es') {
     if (_intre_loaded_locales.indexOf(key)<0) {
       const resp = await fetch(`https://unpkg.com/dayjs@1.11.10/esm/locale/${key}.js`)
       let code = await resp.text()
-      code = code.replace("import dayjs from '../index';", '')
-      code = code.replace("export default locale;", '')
+      code = code.replace("import dayjs from '../index'", '')
+      code = code.replace("export default locale", '')
       eval(code)
 
       _intre_loaded_locales.push(key)
@@ -79,12 +79,12 @@ export async function intre_locale_init(key= 'es') {
 // Getters
 // 
 export function intre_now() {
-  return dayjs().unix();
+  return dayjs().unix()
 }
 
 export function intre_noon(i) {
   if (i===undefined) {
-    i= intre_now();
+    i= intre_now()
   }
   return _dayjs(i)
           .set('hour', 0).set('minute', 0).set('second', 0)
@@ -92,7 +92,7 @@ export function intre_noon(i) {
 }
 
 export function intre_from_date(d) {
-  return dayjs(d).unix();
+  return dayjs(d).unix()
 }
 
 export function intre_from_str (s, fmt = 'DD/MM/YYYY') {
@@ -171,19 +171,28 @@ export function intre_pretty_burocratic(i) {
   return intre_to_str(i, 'D [de] MMMM [de] YYYY')
 }
 
+// 
+// Set date parts
+// 
 
+export function intre_set_seconds (i, v) { return _dayjs(i).second(v) }
+export function intre_set_minutes (i, v) { return _dayjs(i).minute(v) }
+export function intre_set_hour    (i, v) { return _dayjs(i).hour  (v) }
+export function intre_set_day     (i, v) { return _dayjs(i).date  (v) }
+export function intre_set_week_day(i, v) { return _dayjs(i).day   (v) }
+export function intre_set_month   (i, v) { return _dayjs(i).month (v) }
+export function intre_set_year    (i, v) { return _dayjs(i).year  (v) }
 
 // 
 // Extract date parts
 // 
-
-export function intre_get_seconds (i) { return _dayjs(i).second(); }
-export function intre_get_minutes (i) { return _dayjs(i).minute(); }
-export function intre_get_hour    (i) { return _dayjs(i).hour  (); }
-export function intre_get_day     (i) { return _dayjs(i).date  (); }
-export function intre_get_week_day(i) { return _dayjs(i).day   (); }
-export function intre_get_month   (i) { return _dayjs(i).month (); }
-export function intre_get_year    (i) { return _dayjs(i).year  (); }
+export function intre_get_seconds (i) { return _dayjs(i).second() }
+export function intre_get_minutes (i) { return _dayjs(i).minute() }
+export function intre_get_hour    (i) { return _dayjs(i).hour  () }
+export function intre_get_day     (i) { return _dayjs(i).date  () }
+export function intre_get_week_day(i) { return _dayjs(i).day   () }
+export function intre_get_month   (i) { return _dayjs(i).month () }
+export function intre_get_year    (i) { return _dayjs(i).year  () }
 
 export function intre_get_month_name(i, long=false) {
   if (!i)
@@ -229,14 +238,20 @@ export function intre_add_business_days(i, n, includeSaturdays= false) {
       6 // Saturday
     )
   }
-
-  let days_remaining = n
+  
+  const factor = n<0 ? -1 : 1
+  let days_remaining = Math.abs(n)
   let mom= _dayjs(i)
 
   while (days_remaining > 0) {
-    mom= mom.add(1, 'days');
+    if (factor==1) {
+      mom= mom.add(1, 'days')
+    } else {
+      mom= mom.subtract(1, 'days')
+    }
+
     if (exclude_days.indexOf( mom.day() ) < 0) {
-      days_remaining--;
+      days_remaining--
     }
   }
 
@@ -253,6 +268,10 @@ export function intre_add_years(i, n) {
 
 export function intre_sub_days(i, n) {
   return _dayjs(i).subtract(n, 'days').unix()
+}
+
+export function intre_sub_business_days(i, n, includeSaturdays= false) {
+  return intre_add_business_days(i, n * -1, includeSaturdays)
 }
 
 export function intre_sub_months(i, n) {
