@@ -105,9 +105,9 @@ describe('Intre - IT locale', function () {
 
     const months= ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"]
     const months_short= ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"]
-    const weekdays= ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"]
-    const weekdays_short= ["dom","lun","mar","mer","gio","ven","sab"]
-    const weekdays_min= ["do","lu","ma","me","gi","ve","sa"]
+    const weekdays= ["lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"]
+    const weekdays_short= ["lun","mar","mer","gio","ven","sab","dom"]
+    const weekdays_min= ["lu","ma","me","gi","ve","sa","do"]
     const long_date_format= "DD/MM/YYYY"
 
     expect(intre_list_first_day_of_week(1)).to.equal(1)

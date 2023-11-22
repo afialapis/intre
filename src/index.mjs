@@ -355,16 +355,26 @@ export function intre_list_months_short() {
   return _intre_locale_data().monthsShort()
 }
 
+const _sort_weekdays_list = (l, weekFirst=0) => {
+  if (weekFirst==0) {
+    return l
+  }
+  return [...l.slice(weekFirst), ...l.slice(0, weekFirst)]
+}
+
 export function intre_list_weekdays() {
-  return _intre_locale_data().weekdays()
+  const ldata = _intre_locale_data()
+  return _sort_weekdays_list(ldata.weekdays(), ldata.firstDayOfWeek())
 }
 
 export function intre_list_weekdays_short() {
-  return _intre_locale_data().weekdaysShort()
+  const ldata = _intre_locale_data()
+  return _sort_weekdays_list(ldata.weekdaysShort(), ldata.firstDayOfWeek())
 }
 
 export function intre_list_weekdays_min() {
-  return _intre_locale_data().weekdaysMin()
+  const ldata = _intre_locale_data()
+  return _sort_weekdays_list(ldata.weekdaysMin(), ldata.firstDayOfWeek())
 }
 
 export function intre_list_long_date_format(f= 'L') {

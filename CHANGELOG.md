@@ -1,3 +1,6 @@
+# 2.2.4
+· Fix `intre_list_weekdays*()`: returning first week day as first array element
+
 # 2.2.3
 · Fix weekday: now it is locale aware
 
