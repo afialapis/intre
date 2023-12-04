@@ -27,7 +27,7 @@ describe('Intre - EN locale', function () {
     expect(intre_get_week_day_name(MAY_THE_FORCE, true)).to.equal('Wednesday')
 
     const i= intre_set_week_day(MAY_THE_FORCE, 4) 
-
+    expect(typeof i).to.equal("number")
     expect(intre_get_week_day_name(i, false)).to.equal('Th')
     expect(intre_get_week_day_name(i, true)).to.equal('Thursday')
   })  

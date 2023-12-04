@@ -177,13 +177,13 @@ export function intre_pretty_burocratic(i) {
 // Set date parts
 // 
 
-export function intre_set_seconds (i, v) { return _to_dayjs(i).second (v) }
-export function intre_set_minutes (i, v) { return _to_dayjs(i).minute (v) }
-export function intre_set_hour    (i, v) { return _to_dayjs(i).hour   (v) }
-export function intre_set_day     (i, v) { return _to_dayjs(i).date   (v) }
-export function intre_set_week_day(i, v) { return _to_dayjs(i).weekday(v) }
-export function intre_set_month   (i, v) { return _to_dayjs(i).month  (v) }
-export function intre_set_year    (i, v) { return _to_dayjs(i).year   (v) }
+export function intre_set_seconds (i, v) { return _to_dayjs(i).second (v).unix() }
+export function intre_set_minutes (i, v) { return _to_dayjs(i).minute (v).unix() }
+export function intre_set_hour    (i, v) { return _to_dayjs(i).hour   (v).unix() }
+export function intre_set_day     (i, v) { return _to_dayjs(i).date   (v).unix() }
+export function intre_set_week_day(i, v) { return _to_dayjs(i).weekday(v).unix() }
+export function intre_set_month   (i, v) { return _to_dayjs(i).month  (v).unix() }
+export function intre_set_year    (i, v) { return _to_dayjs(i).year   (v).unix() }
 
 // 
 // Extract date parts
