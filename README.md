@@ -1,4 +1,4 @@
-![Intre logo](https://intre.afialapis.com/logo.png)
+![Intre logo](https://www.afialapis.com/os/intre/logo.png)
 
 [![NPM Version](https://badge.fury.io/js/intre.svg)](https://www.npmjs.com/package/intre)
 [![NPM Downloads](https://img.shields.io/npm/dm/intre.svg?style=flat)](https://www.npmjs.com/package/intre)

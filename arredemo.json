@@ -2,8 +2,9 @@
   "theme": "default",
   "favicon": "logo/favicon/intre.png",
   "logo": "logo/intre_logo_name_200.png",
+  "url": "https://www.afialapis.com/os/intre",
   "company": "Afialapis",
-  "url": "intre.afialapis.com",
+  "company_url": "https://www.afialapis.com",
   "doc_versions": null,
   "md": {
     "strip_details_tag": true,
