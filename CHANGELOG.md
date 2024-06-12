@@ -1,3 +1,8 @@
+# 2.3.0
+· No more `eval`
+· added tests for `ca`
+· upgraded `xeira`
+
 # 2.2.4
 · Fix `intre_list_weekdays*()`: returning first week day as first array element
 

@@ -44,16 +44,31 @@ export const _dayjs = dayjs
 export async function intre_locale_load(key= 'es') {
   try {
     if (_intre_loaded_locales.indexOf(key)<0) {
+      // Read remote locale module
       const resp = await fetch(`https://unpkg.com/dayjs@1.11.10/esm/locale/${key}.js`)
       let code = await resp.text()
-      code = code.replace("import dayjs from '../index'", '')
-      code = code.replace("export default locale", '')
-      eval(code)
+      
+      // Check what args are used in the dayjs.locale() call
+      const regex = /dayjs\.locale\(([^)]+)\)/
+      const match = code.match(regex)
+      const sargs = match[1].split(',').slice(1).join(',')     
+      const argsFunction = new Function('return [' + sargs + '];')
+      const args = argsFunction()
 
+      // Clean the code
+      code = code.replace("import dayjs from '../index';", '')
+      code = code.replace("export default locale;", '')
+      code = code.replace(/^\s*dayjs\.locale\([^)]*\);\s*$/gm, '')
+
+      // Run the code so it returns the locale
+      const scriptFunction = new Function(code + ` return locale;`)
+      const locale = scriptFunction()
+
+      // Init it globally, using previously kept args
+      dayjs.locale(locale, ...args)
+
+      // Mark as already loaded
       _intre_loaded_locales.push(key)
-      //const _ = typeof window === 'object'
-      //  ? await import(`https://unpkg.com/dayjs/locale/${key}.js`)
-      //  : await import(`dayjs/locale/${key}.js`)
     }
     
   } catch(err) {

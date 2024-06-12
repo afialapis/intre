@@ -161,3 +161,9 @@ Format: _"D de MMMM de YYYY"_
 ### `intre_list_weekdays_min()`
 
 ### `intre_list_long_date_format(f= 'L')`
+
+
+# TODO
+
+`intre_set_week_day` set week day within current week.
+If setting wedenesday for today and today is saturday, returned value will be past wednesday.

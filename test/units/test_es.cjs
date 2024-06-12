@@ -31,6 +31,7 @@ describe('Intre - ES locale', function () {
 
     expect(intre_get_week_day_name(i, false)).to.equal('Ju')
     expect(intre_get_week_day_name(i, true)).to.equal('Jueves')
+    expect(i>MAY_THE_FORCE).to.equal(true)
   })  
 
   it("check month names", async () => {   
@@ -61,7 +62,7 @@ describe('Intre - ES locale', function () {
     const mdiff = intre_diff(intre_now(), MAY_THE_FORCE, 'months')
     let ydiff = 2
     if (mdiff >= 24) {
-      ydiff = Math.round(mdiff/24)
+      ydiff = 2 + parseInt((mdiff % 24) / 12)
     }
     let ago
     if (mdiff < 18) {
