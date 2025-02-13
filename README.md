@@ -119,9 +119,7 @@ Must be called once, when loading your app.
 
  * `intre_set_week_day`
 
-Set week day within current week.
-
-If setting wedenesday for today and today is saturday, returned value will be past wednesday.
+Set week day within current week. If setting wedenesday for today and today is saturday, returned value will be past wednesday.
 
 
 ## Changelog
