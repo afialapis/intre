@@ -1,5 +1,3 @@
-import { intre_to_str } from "../../src/index.mjs"
-
 const expect= global.expect
 const MAY_THE_FORCE = 1651615200
 
@@ -61,10 +59,10 @@ describe('Intre - EN locale', function () {
     } = global.intre
 
     const mdiff = intre_diff(intre_now(), MAY_THE_FORCE, 'months')
-    let ydiff = 2
+    let ydiff = 3
     
     if (mdiff >= 24) {
-      ydiff = 2 + parseInt((mdiff % 24) / 12)
+      ydiff = 3 + parseInt((mdiff % 24) / 12)
     }
     let ago
     if (mdiff < 18) {

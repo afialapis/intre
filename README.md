@@ -1,26 +1,37 @@
-![Intre logo](https://www.afialapis.com/os/intre/logo.png)
-
+# intre
 [![NPM Version](https://badge.fury.io/js/intre.svg)](https://www.npmjs.com/package/intre)
 [![NPM Downloads](https://img.shields.io/npm/dm/intre.svg?style=flat)](https://www.npmjs.com/package/intre)
 
+![Intre logo](https://www.afialapis.com/os/intre/logo.png)
+
+---
+
+> **[intre](https://academia.gal/dicionario/-/termo/intre)**. substantivo masculino:
+
+> **1. Punto preciso no tempo.**
+
+> _Naquel intre chamaron á porta._
+
+---
+
+## Intro
+
 Working with dates in a simple way: using [Unix Epoch times](https://en.wikipedia.org/wiki/Unix_time). So: numbers.
 
-# Install
+`intre` is a wrap over [day.js](https://day.js.org/) providing an API to work with `int`-typed dates.
+
+## Install
 
 ```
   npm i intre
 ```
 
-# Intro
+## API
 
-`intre` is a wrap over [day.js](https://day.js.org/) providing an API to work with `int`-typed dates.
+### Init locale
 
-
-# API
-
-## Init locale
-
-### `async intre_locale_init(key)` and `async intre_locale_load(key)`
+ * `async intre_locale_init(key)`
+ * `async intre_locale_load(key)`
 
 Preloaded locales are `en` (default) and `es`.
 
@@ -30,140 +41,89 @@ If it is not preloaded, `intre` will load it (requires a network fetch) by calli
 
 Must be called once, when loading your app.
 
-## Getters
+### Getters
 
-### `intre_now()`
+ * `intre_now()`
+ * `intre_noon(i)`
+ * `intre_from_date(d)`
+ * `intre_from_str(s, fmt = 'DD/MM/YYYY')`
+ * `intre_from_parts(y, m, d)`
 
-### `intre_noon(i)`
+### Converters
 
-### `intre_from_date(d)`
+ * `intre_to_date(i)`
+ * `intre_to_str(i, fmt = 'DD/MM/YYYY')`
+ * `intre_to_parts(i)`
 
-### `intre_from_str(s, fmt = 'DD/MM/YYYY')`
 
-### `intre_from_parts(y, m, d)`
+### Prettiers
 
-## Converters
+ * `intre_pretty_from_now(i)`
+ * `intre_pretty_short(i)`: Format: _"D MMM"_
+ * `intre_pretty_medium(i)`: Format: _"DD MMM 'YY"_
+ * `intre_pretty_long(i)`: Format: _"DD MMMM YYYY"_
+ * `intre_pretty_short_with_time(i)`: Format: _"D MMM a las HH:MM"
+ * `intre_pretty_short_with_from_now(i)`: Format: _"D MMM (<from Now>)"_
+ * `intre_pretty_burocratic(i)`: Format: _"D de MMMM de YYYY"_
 
-### `intre_to_date(i)`
+### Extract date parts
 
-### `intre_to_str(i, fmt = 'DD/MM/YYYY')`
+ * `intre_get_seconds(i)`
+ * `intre_get_minutes(i)`
+ * `intre_get_hour(i)`
+ * `intre_get_day(i)`
+ * `intre_get_week_day(i)`
+ * `intre_get_month(i)`
+ * `intre_get_year(i)`
+ * `intre_get_month_name(i, long=false)`
 
-### `intre_to_parts(i)`
+### Checks
 
+ * `intre_are_same(i1, i2, what= 'seconds')`: `what` can be `milliseconds`, `seconds` (default), `minutes`, `hours`, `day`, `month`, `year`
+ * `intre_diff(i1, i2, what= 'seconds', decimals= false)`: `what` can be `milliseconds`, `seconds` (default), `minutes`, `hours`, `day`, `month`, `year`
 
-## Prettiers
+###  Add and subtract
 
-### `intre_pretty_from_now(i)`
+ * `intre_add_days(i, n)`
+ * `intre_add_business_days(i, n, includeSaturdays= false)`
+ * `intre_add_months(i, n)`
+ * `intre_add_years(i, n)`
+ * `intre_sub_days(i, n)`
+ * `intre_sub_months(i, n)`
+ * `intre_sub_years(i, n)`
 
-### `intre_pretty_short(i)`
+### Search close dates
 
-Format: _"D MMM"_
+ * `intre_first_of_week(i)`
+ * `intre_last_of_week(i)`
+ * `intre_first_of_month(i)`
+ * `intre_last_of_month(i)`
+ * `intre_first_of_year(i)`
+ * `intre_last_of_year(i)`
 
-### `intre_pretty_medium(i)`
+### Ranges
 
-Format: _"DD MMM 'YY"_
+ * `intre_range(iFrom, iTo, includeTo= true)`
 
-### `intre_pretty_long(i)`
-  
-Format: _"DD MMMM YYYY"_
+### List locale data
 
-### `intre_pretty_short_with_time(i)`
-  
-Format: _"D MMM a las HH:MM"
+ * `intre_list_first_day_of_week()`
+ * `intre_list_months()`
+ * `intre_list_months_short()`
+ * `intre_list_weekdays()`
+ * `intre_list_weekdays_short()`
+ * `intre_list_weekdays_min()`
+ * `intre_list_long_date_format(f= 'L')`
 
-### `intre_pretty_short_with_from_now(i)`
-  
-Format: _"D MMM (<from Now>)"_
+## TODO
 
-### `intre_pretty_burocratic(i)`
-  
-Format: _"D de MMMM de YYYY"_
+ * `intre_set_week_day`
 
+Set week day within current week.
 
-## Extract date parts
-
-### `intre_get_seconds(i)`
-
-### `intre_get_minutes(i)`
-
-### `intre_get_hour(i)`
-
-### `intre_get_day(i)`
-
-### `intre_get_week_day(i)`
-
-### `intre_get_month(i)`
-
-### `intre_get_year(i)`
-
-### `intre_get_month_name(i, long=false)`
-
-
-## Checks
-
-### `intre_are_same(i1, i2, what= 'seconds')`
-
-`what` can be `milliseconds`, `seconds` (default), `minutes`, `hours`, `day`, `month`, `year`
-
-### `intre_diff(i1, i2, what= 'seconds', decimals= false)`
-
-`what` can be `milliseconds`, `seconds` (default), `minutes`, `hours`, `day`, `month`, `year`
-
-##  Add and subtract
-
-### `intre_add_days(i, n)`
-
-### `intre_add_business_days(i, n, includeSaturdays= false)`
-
-### `intre_add_months(i, n)`
-
-### `intre_add_years(i, n)`
-
-### `intre_sub_days(i, n)`
-
-### `intre_sub_months(i, n)`
-
-### `intre_sub_years(i, n)`
-
-## Search close dates
-
-### `intre_first_of_week(i)`
-
-### `intre_last_of_week(i)`
-
-### `intre_first_of_month(i)`
-
-### `intre_last_of_month(i)`
-
-### `intre_first_of_year(i)`
-
-### `intre_last_of_year(i)`
-
-
-## Ranges
-
-### `intre_range(iFrom, iTo, includeTo= true)`
-
-
-## List locale data
-
-
-### `intre_list_first_day_of_week()`
-
-### `intre_list_months()`
-
-### `intre_list_months_short()`
-
-### `intre_list_weekdays()`
-
-### `intre_list_weekdays_short()`
-
-### `intre_list_weekdays_min()`
-
-### `intre_list_long_date_format(f= 'L')`
-
-
-# TODO
-
-`intre_set_week_day` set week day within current week.
 If setting wedenesday for today and today is saturday, returned value will be past wednesday.
+
+
+## Changelog
+
+See [changelog here](https://github.com/afialapis/intre/blob/main/CHANGELOG.md)

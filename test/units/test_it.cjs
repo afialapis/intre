@@ -59,9 +59,9 @@ describe('Intre - IT locale', function () {
     } = global.intre
 
     const mdiff = intre_diff(intre_now(), MAY_THE_FORCE, 'months')
-    let ydiff = 2
+    let ydiff = 3
     if (mdiff >= 24) {
-      ydiff = 2 + parseInt((mdiff % 24) / 12)
+      ydiff = 3 + parseInt((mdiff % 24) / 12)
     }
     let ago
     if (mdiff < 18) {
