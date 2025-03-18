@@ -18,7 +18,7 @@
 
 Working with dates in a simple way: using [Unix Epoch times](https://en.wikipedia.org/wiki/Unix_time). So: numbers.
 
-`intre` is a wrap over [day.js](https://day.js.org/) providing an API to work with `int`-typed dates.
+[`intre`](https://www.afialapis.com/os/intre) is a wrap over [day.js](https://day.js.org/) providing an API to work with `int`-typed dates.
 
 ## Install
 

@@ -1,3 +1,7 @@
+# 2.5.0
+
+ * Upgraded `xeira`, which means Node >= 21.
+
 # 2.4.0
 
  * Upgraded `xeira`.
